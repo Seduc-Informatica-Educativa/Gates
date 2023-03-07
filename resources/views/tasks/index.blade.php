@@ -42,11 +42,13 @@
                                         <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                             <a href="{{ route('tasks.show', $task->id) }}" class="mb-2 mr-2 text-blue-600 hover:text-blue-900">View</a>
                                             <a href="{{ route('tasks.edit', $task->id) }}" class="mb-2 mr-2 text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            @can('admin_access')        
                                             <form class="inline-block" action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="mb-2 mr-2 text-red-600 hover:text-red-900" value="Delete">
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
